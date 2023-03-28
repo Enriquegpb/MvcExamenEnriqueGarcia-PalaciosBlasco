@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MvcExamenEnriqueGarcia_PalaciosBlasco.Models.Libro>
+
+@{
+    ViewData["Title"] = "MiCarrito";
+    List<Libro> libros =
+              Context.Session.GetObject<List<Libro>>("LISTALIBROS");
+}
+
+<h1>MiCarrito</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+    @foreach (Libro libro in libros)
+    {
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">@libro.Autor</h5>
+                    <h5 class="card-title">@libro.Titulo</h5>
+                    <img src="~/images/@libro.Portada" class="card-img-top" alt="@libro.Titulo">
+                    <a asp-action="Details" asp-controller="Libros" asp-route-idlibro="@libro.IdLibro" class="card-text">@libro.Titulo</a>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+    }
+
+

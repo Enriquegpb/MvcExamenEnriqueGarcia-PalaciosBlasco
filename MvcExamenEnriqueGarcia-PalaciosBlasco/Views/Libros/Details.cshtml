@@ -1,0 +1,14 @@
+﻿@model MvcExamenEnriqueGarcia_PalaciosBlasco.Models.Libro
+
+@{
+    ViewData["Title"] = "Details";
+}
+<ul class="list-group">
+    <li class="list-group-item"><img src="~/images/@Model.Portada" /></li>
+    <li class="list-group-item">Titulo: @Model.Titulo</li>
+    <li class="list-group-item">Autor:@Model.Autor</li>
+    <li class="list-group-item">Autor: Editorial: @Model.Editorial</li>
+    <li class="list-group-item">Autor: Precio: @Model.Precio €</li>
+    <li class="list-group-item">Sipnosis: <br /> Precio: @Model.Resumen</li>
+</ul>
+<a asp-controller="Libros" asp-action="MiCarrito" asp-route-idlibro="@Model.IdLibro" btn-btn-info>Comprar</a>

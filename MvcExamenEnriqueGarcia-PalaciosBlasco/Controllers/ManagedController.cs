@@ -49,7 +49,9 @@ namespace MvcExamenEnriqueGarcia_PalaciosBlasco.Controllers
                     (CookieAuthenticationDefaults.AuthenticationScheme
                     , userPrincipal);
                 return RedirectToAction("PerfilUsuario", "Libros");
-
+                /**
+                 * 
+                 */
 
 
             }

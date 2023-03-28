@@ -14,9 +14,42 @@ namespace MvcExamenEnriqueGarcia_PalaciosBlasco.Controllers
             this.repo = repo;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? posicion,int? genero)
         {
-            List<Libro> libros = await this.repo.GetLibros();   
+            if (posicion == null)
+            {
+                posicion = 1;
+            }
+            int numregistros = await this.repo.GetLibrosTotal();
+            //ESTAMOS EN LA POSICION 1, QUE TENEMOS QUE DEVOLVER A LA VISTA?
+            int siguiente = posicion.Value + 1;
+            if (siguiente > numregistros)
+            {
+                //EFECTO OPTICO
+                siguiente = numregistros;
+            }
+            int anterior = posicion.Value - 1;
+            if (anterior < 1)
+            {
+                anterior = 1;
+            }
+            //Libros vistaLibros =
+            //    await this.repo.GetLibrosSession(posicion.Value);
+            ViewData["ULTIMO"] = numregistros;
+            ViewData["SIGUIENTE"] = siguiente;
+            ViewData["ANTERIOR"] = anterior;
+
+            List<Libro> libros = new List<Libro>();
+            if(genero == null)
+            {
+                 libros = await this.repo.GetLibros();
+
+            }
+            else
+            {
+                libros = this.repo.GetLibrosGenero(genero.Value, posicion.Value, ref numregistros);
+            }
+            
             return View(libros);
         } 
         public async Task<IActionResult> Details(int idlibro)

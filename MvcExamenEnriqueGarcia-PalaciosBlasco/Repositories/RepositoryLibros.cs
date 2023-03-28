@@ -69,6 +69,23 @@ namespace MvcExamenEnriqueGarcia_PalaciosBlasco.Repositories
             this.context.Pedidos.Add(pedido);
             await this.context.SaveChangesAsync();
         }
+
+        public async Task<int> GetLibrosTotal()
+        {
+            return await this.context.Libros.CountAsync();
+        }
+        public  List<Libro> GetLibrosGenero(int idgenero)
+        {
+            return this.context.Libros.Where(x => x.IdGenero == idgenero).ToList();
+        }
+        public List<Libro> GetLibrosGenero(int idgenero, int posicion, ref int numerolibros)
+        {
+            List<Libro> listalbros = this.GetLibrosGenero(idgenero);
+            numerolibros = listalbros.Count;
+            List<Libro> libros =
+                listalbros.Skip(posicion).Take(3).ToList();
+            return libros;
+        }
        
     }
 }

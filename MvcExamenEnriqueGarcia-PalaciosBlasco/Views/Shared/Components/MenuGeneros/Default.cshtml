@@ -7,7 +7,7 @@
         @foreach(Genero genero in Model)
         {
             
-            <li><a class="dropdown-item" href="#">@genero.Nombre</a></li>
+            <li><a class="dropdown-item"asp-action="Index" asp-controller="Libros" asp-route-genero="@genero.IdGenero">@genero.Nombre</a></li>
         }
         </ul>
     </ul>

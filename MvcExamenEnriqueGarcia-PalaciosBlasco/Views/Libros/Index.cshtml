@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MvcExamenEnriqueGarcia_PalaciosBlasco.Models.Libro>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@foreach (Libro libro in Model)
+{
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">@libro.Autor</h5>
+            <h5 class="card-title">@libro.Titulo</h5>
+            <img src="~/images/@libro.Portada" class="card-img-top" alt="@libro.Titulo">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+}
